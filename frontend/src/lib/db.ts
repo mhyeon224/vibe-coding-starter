@@ -21,21 +21,20 @@ const dbPath = path.join(process.cwd(), "local.db");
 
 const defaultProfile: Profile = {
   id: 1,
-  name: "오타니 쇼헤이",
-  team: "LA 다저스",
-  position: "투수 / 지명타자",
-  uniform_number: "17번",
-  tagline:
-    "투수와 타자를 모두 소화하는 세계적인 야구 선수입니다. 강한 타격, 빠른 주루, 압도적인 경기 영향력으로 많은 팬들에게 사랑받고 있습니다.",
+  name: "문지현",
+  team: "부산대학교 경영학과 25학번",
+  position: "AI 기반 지능형 정제",
+  uniform_number: "ENFJ",
+  tagline: "17만 건 한식 레시피 Raw 데이터를 표준화하고, 모호한 계측 단위를 g/ml로 정규화하는 데이터 정제 역할을 맡았습니다.",
   introduction:
-    "안녕하세요. 저는 오타니 쇼헤이입니다. 현재 LA 다저스에서 뛰고 있으며, 매 경기 팀에 도움이 되는 선수가 되기 위해 최선을 다하고 있습니다.",
-  image_path: "/images/ohtani.jpeg",
+    "안녕하세요. 식품 성분표 기반 한식 레시피 데이터 표준화 자동화 시스템 구축 프로젝트에서 AI 기반 지능형 정제 역할을 맡은 부산대학교 경영학과 문지현입니다. 웹페이지 제작과 GitHub 배포, Google Sheets API 기반 데이터 자동 정리, 유튜브 댓글 수집과 감정 분류 대시보드 제작을 경험했습니다. 또한 IBA에서 영국 중고차 데이터를 다루며 중복, 결측, 명칭과 단위 불일치를 도메인 기준으로 전처리했습니다. 이 경험을 바탕으로 비정형 재료명을 표준화하고 모호한 단위를 정확히 변환하는 정제 시스템을 만들겠습니다.",
+  image_path: "/images/moon-jihyun.png",
 };
 
 const defaultHighlights: Highlight[] = [
-  { id: 1, label: "강한 홈런 파워" },
-  { id: 2, label: "빠른 주루" },
-  { id: 3, label: "이도류 플레이" },
+  { id: 1, label: "데이터 자동화 경험" },
+  { id: 2, label: "도메인 기반 전처리" },
+  { id: 3, label: "책임감 있는 실행력" },
 ];
 
 function getDb() {
@@ -71,8 +70,7 @@ export function getProfile() {
       .get() as Profile | undefined;
 
     return profile ?? defaultProfile;
-  } catch (error) {
-    console.error(error);
+  } catch {
     return defaultProfile;
   }
 }
@@ -82,8 +80,7 @@ export function getHighlights() {
     const highlights = getDb().prepare("SELECT id, label FROM highlights ORDER BY id").all() as Highlight[];
 
     return highlights.length > 0 ? highlights : defaultHighlights;
-  } catch (error) {
-    console.error(error);
+  } catch {
     return defaultHighlights;
   }
 }
